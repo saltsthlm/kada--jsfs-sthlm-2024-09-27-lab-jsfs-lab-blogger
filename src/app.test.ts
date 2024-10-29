@@ -24,8 +24,8 @@ describe("DOM Testing with jsdom", () => {
         <html>
           <body>
             <ul id="entriesList">
-              <li><a href="/entries/sample-post">failOnlyOneTest.md</a></li>
-              <li><a href="/entries/another-post">saveyourfingers-1.md</a></li>
+              <li><a href="/entries/failOnlyOneTest.md<">failOnlyOneTest.md</a></li>
+              <li><a href="/entries/saveyourfingers-1.md">saveyourfingers-1.md</a></li>
             </ul>
           </body>
         </html>
