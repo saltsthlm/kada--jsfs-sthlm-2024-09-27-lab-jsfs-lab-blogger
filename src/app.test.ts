@@ -1,6 +1,6 @@
 import { JSDOM } from "jsdom";
 import request from "supertest";
-import { app } from "../src/app";
+import { app } from "./app";
 
 describe("GET /entries/:fileName", () => {
   it("should return 200 and the content of the file when the file exists", async () => {
@@ -8,7 +8,9 @@ describe("GET /entries/:fileName", () => {
 
     expect(response.status).toBe(200);
     expect(response.body).toHaveProperty("content");
-    expect(response.body.content).toContain("I’ve been tipping a few mobs of this thing");
+    expect(response.body.content).toContain(
+      "I’ve been tipping a few mobs of this thing",
+    );
   });
 
   it("should return 404 if the file does not exist", async () => {
@@ -19,8 +21,8 @@ describe("GET /entries/:fileName", () => {
 });
 
 describe("DOM Testing with jsdom", () => {
-    it("should render list items for blog entries", () => {
-      const htmlContent = `
+  it("should render list items for blog entries", () => {
+    const htmlContent = `
         <html>
           <body>
             <ul id="entriesList">
@@ -30,14 +32,14 @@ describe("DOM Testing with jsdom", () => {
           </body>
         </html>
       `;
-  
-      const dom = new JSDOM(htmlContent);
-      const document = dom.window.document;
-      const entriesList = document.getElementById("entriesList");
-  
-      expect(entriesList).not.toBeNull();
-      expect(entriesList?.children.length).toBe(2);
-      expect(entriesList?.children[0].textContent).toBe("failOnlyOneTest.md");
-      expect(entriesList?.children[1].textContent).toBe("saveyourfingers-1.md");
-    });
+
+    const dom = new JSDOM(htmlContent);
+    const document = dom.window.document;
+    const entriesList = document.getElementById("entriesList");
+
+    expect(entriesList).not.toBeNull();
+    expect(entriesList?.children.length).toBe(2);
+    expect(entriesList?.children[0].textContent).toBe("failOnlyOneTest.md");
+    expect(entriesList?.children[1].textContent).toBe("saveyourfingers-1.md");
   });
+});
