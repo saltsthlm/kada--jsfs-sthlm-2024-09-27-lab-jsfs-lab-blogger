@@ -1,10 +1,13 @@
 import express from 'express';
+import { Request, Response } from 'express';
 
 const app = express();
 
-app.get('/', (request, response) => {
-  response.send('hej hej');
+  app.use(express.static("public"))
+app.get('/', (req: Request, res: Response) => {
+  res.send("hej hej");
 });
+
 
 // MORE ROUTES HERE
 
