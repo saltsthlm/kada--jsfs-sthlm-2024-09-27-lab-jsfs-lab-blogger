@@ -1,4 +1,4 @@
-// tests/app.test.ts
+import { JSDOM } from "jsdom";
 import request from "supertest";
 import { app } from "../src/app";
 
@@ -17,3 +17,27 @@ describe("GET /entries/:fileName", () => {
     expect(response.text).toBe("File not found");
   });
 });
+
+describe("DOM Testing with jsdom", () => {
+    it("should render list items for blog entries", () => {
+      const htmlContent = `
+        <html>
+          <body>
+            <ul id="entriesList">
+              <li><a href="/entries/sample-post">failOnlyOneTest.md</a></li>
+              <li><a href="/entries/another-post">saveyourfingers-1.md</a></li>
+            </ul>
+          </body>
+        </html>
+      `;
+  
+      const dom = new JSDOM(htmlContent);
+      const document = dom.window.document;
+      const entriesList = document.getElementById("entriesList");
+  
+      expect(entriesList).not.toBeNull();
+      expect(entriesList?.children.length).toBe(2);
+      expect(entriesList?.children[0].textContent).toBe("failOnlyOneTest.md");
+      expect(entriesList?.children[1].textContent).toBe("saveyourfingers-1.md");
+    });
+  });
