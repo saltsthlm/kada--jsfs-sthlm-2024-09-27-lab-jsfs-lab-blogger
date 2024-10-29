@@ -3,22 +3,55 @@
   <head>
     <meta charset="UTF-8" />
     <title>Salt Blogger</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
   </head>
-  <body>
-    <h1>🦊</h1>
+  <script>
+    const fetchMarkdown = async (fileName) => {
+      try {
+        const response = await fetch(`/entries/${fileName}`);
+        const data = await response.json();
+        const articleEl = document.getElementById("markdown");
+        articleEl.innerText = "";
+        const headerEl = document.createElement("h3");
+        headerEl.textContent = "Markdown";
+        
+        articleEl.appendChild(headerEl);
+
+        articleEl.innerHTML += `<p>${data.content.replace(/\n/g, "<br>")}</p>`;
+
+        articleEl.hidden = false;
+      } catch (error) {
+        console.error("Error fetching markdown:", error);
+      }
+    };
+  </script>
+  <body style="padding: 2rem 4rem">
+    <h1 style="margin-bottom: 3rem">🧂 Salt blogger 🧂</h1>
     <ul>
       <li>
-        <a href="/entries/failOnlyOneTest.md">failOnlyOneTest</a>
+        <a href="#" onclick="fetchMarkdown('failOnlyOneTest.md')"
+          >failOnlyOneTest.md</a
+        >
       </li>
       <li>
-        <a href="/entries/mochareporters.md">mochareporters.md</a>
+        <a href="#" onclick="fetchMarkdown('mochareporters.md')"
+          >mochareporters.md</a
+        >
       </li>
       <li>
-        <a href="/entries/saveyourfingers-1.md">saveyourfingers-1</a>
+        <a href="#" onclick="fetchMarkdown('saveyourfingers-1.md')"
+          >aveyourfingers-1.md</a
+        >
       </li>
       <li>
-        <a href="/entries/saveyourfingers-2.md">saveyourfingers-2</a>
+        <a href="#" onclick="fetchMarkdown('saveyourfingers-2.md')"
+          >saveyourfingers-2.md</a
+        >
       </li>
+      <article id="markdown" hidden style="margin: 2rem -1rem 0"></article>
     </ul>
   </body>
 </html>
