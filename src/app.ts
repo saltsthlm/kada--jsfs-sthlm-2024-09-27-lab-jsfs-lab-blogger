@@ -1,42 +1,15 @@
-// app.ts
-import express, { Request, Response } from "express";
-import fs from "fs";
-import path from "path";
-import showdown from "showdown";
-
-const app = express();
-
-app.use(express.static(path.resolve(__dirname, "../public")));
-
-app.use("/entries", express.static(path.resolve(__dirname, "../entries")));
-
-app.get("/", (req: Request, res: Response) => {
-  res.sendFile(path.resolve(__dirname, "../public", "index.html"));
+import express from 'express';
+import path from 'path';
+import fs from "fs/promises";
+export const app = express();
+app.use(express.static(path.join(__dirname, '../public')));
+app.get('/entries/:fileName', async (req, res) => {
+  try {
+    const fileName = req.params.fileName;
+    const filePath = path.join(__dirname, '../entries', fileName);
+    const data = await fs.readFile(filePath, 'utf-8');
+    res.json({ content: data });
+  } catch (error) {
+    res.status(404).send('File not found');
+  }
 });
-
-app.get("/entries/:fileName", (req: Request, res: Response) => {
-  const { fileName } = req.params;
-  const filePath = path.resolve(__dirname, "../entries", `${fileName}.md`);
-
-  fs.readFile(filePath, "utf-8", (err, data) => {
-    if (err) {
-      return res.status(404).send("File not found");
-    }
-
-    const converter = new showdown.Converter();
-    const htmlContent = converter.makeHtml(data);
-
-    res.send(`
-      <html>
-        <head><title>${fileName}</title></head>
-        <body>
-          <h1>${fileName}</h1>
-          <div>${htmlContent}</div>
-          <a href="/">Back to all posts</a>
-        </body>
-      </html>
-    `);
-  });
-});
-
-export default app;
