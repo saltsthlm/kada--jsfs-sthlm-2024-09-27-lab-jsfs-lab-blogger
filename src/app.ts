@@ -10,6 +10,9 @@ app.get("/entries/:fileName", async (req, res) => {
     const data = await fs.readFile(filePath, "utf-8");
     res.json({ content: data });
   } catch (error) {
+    if (error instanceof Error) {
+      console.log(error);
+    }
     res.status(404).send("File not found");
   }
 });
