@@ -3,6 +3,7 @@ When more than one test is failing at the same time, try to get only one failing
 There are two main approaches to do so `only` and `skip`.
 
 ## Only
+
 To run only one test, find the test in question and change from
 
 ```javascript
@@ -37,6 +38,7 @@ describe('Tests that works', () => {
 Now, only the 'Tests that fails'-test**s** will run. Both of them.
 
 ## Skip
+
 Another easy way to do that is to call `it.skip` to skip one test (or `describe.skip` for all the tests under it).
 
 ```javascript
@@ -44,6 +46,7 @@ it('a test that fails', () => { ... });
 it('another test that fails', () => { ... })
 it('oh no, not yet another test that fails', () => { ... })
 ```
+
 becomes easier to manage one-by-one:
 
 ```javascript

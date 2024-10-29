@@ -10,7 +10,7 @@ The full map (https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.p
 
 Here are my top 10:
 
-1. **⌘S** Save current file  and **⌥⌘S** to Save All open documents
+1. **⌘S** Save current file and **⌥⌘S** to Save All open documents
 1. **⌘W** Close current file(window)
 1. **⌘P** Goto file dialog
 1. **⇧⌥F** format document (fixes indentation etc)
@@ -23,7 +23,7 @@ Here are my top 10:
 
 In the list above:
 
-* ⌘ is the command key
-* ⌥ - means alt/option-key
-* ⇧ is the Shift-key
-* ⌃ is the control-key
+- ⌘ is the command key
+- ⌥ - means alt/option-key
+- ⇧ is the Shift-key
+- ⌃ is the control-key

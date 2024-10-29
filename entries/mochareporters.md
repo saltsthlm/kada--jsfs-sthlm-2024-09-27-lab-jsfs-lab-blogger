@@ -1,6 +1,6 @@
 I’ve been tipping a few mobs of this thing, but I wanted to document it here as well.
 
-When we are doing such rapid code-test-code-test-code-loops it can be come very cumbersome to 
+When we are doing such rapid code-test-code-test-code-loops it can be come very cumbersome to
 
 1. have many failing tests (psst `.skip` them - see above) and
 2. to scroll past all the long output that our passing tests are producing.
@@ -29,9 +29,9 @@ The output in the terminal will now look something like this:
 
 Here’s how to read that:
 
-* Passing tests are indicated with a dot `.`
-* Faling tests are indicated with an exclamation mark `!`
-* Pending (skipped) tests are indicated with a comma `,`
+- Passing tests are indicated with a dot `.`
+- Faling tests are indicated with an exclamation mark `!`
+- Pending (skipped) tests are indicated with a comma `,`
 
 This will help you to get a much tighter and readable feedback, minimizing scrolling through text and take the load of your brains of all the failing tests that you don’t need to care about.
 
@@ -39,7 +39,7 @@ This will help you to get a much tighter and readable feedback, minimizing scrol
 
 There are a number of other reporters that could be useful. My two favorites are:
 
-* `list` - creates sentences of the test description
-* `min` - clears the terminal putting the test output at the top of the screen. Very readable
+- `list` - creates sentences of the test description
+- `min` - clears the terminal putting the test output at the top of the screen. Very readable
 
 You can see (and play with!) all the mocha reporters by going `npx mocha --reporters` in the root of your project.
