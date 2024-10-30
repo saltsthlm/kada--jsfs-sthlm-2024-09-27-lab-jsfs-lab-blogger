@@ -30,20 +30,22 @@ describe("DOM Testing with JSDOM", () => {
       </head>
       <body style="padding: 2rem 4rem">
         <h1 style="margin-bottom: 3rem">Salt Blogger</h1>
-        <ul id="entriesList">
+        <ul id="blogslist" data-testid="blogslist">
           <li><a href="#" onclick="fetchMarkdown('failOnlyOneTest.md')">failOnlyOneTest.md</a></li>
+          <li><a href="#" onclick="fetchMarkdown('mochareporters.md')">mochareporters.md</a></li>
           <li><a href="#" onclick="fetchMarkdown('saveyourfingers-1.md')">saveyourfingers-1.md</a></li>
+          <li><a href="#" onclick="fetchMarkdown('saveyourfingers-2.md')">saveyourfingers-2.md</a></li>
         </ul>
       </body>
       </html>
     `;
     const dom = new JSDOM(htmlContent);
     const document = dom.window.document;
-    const entriesList = document.getElementById("entriesList");
+    const blogslist = document.getElementById("blogslist");
     
-    expect(entriesList).not.toBeNull();
-    expect(entriesList?.children.length).toBe(2);
-    expect(entriesList?.children[0].textContent).toBe("failOnlyOneTest.md");
-    expect(entriesList?.children[1].textContent).toBe("saveyourfingers-1.md");
+    expect(blogslist).not.toBeNull();
+    expect(blogslist?.children.length).toBe(4);
+    expect(blogslist?.children[0].textContent).toBe("failOnlyOneTest.md");
+    expect(blogslist?.children[2].textContent).toBe("saveyourfingers-1.md");
   });
 });
