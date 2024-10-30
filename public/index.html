@@ -17,7 +17,7 @@
         articleEl.innerText = "";
         const headerEl = document.createElement("h3");
         headerEl.textContent = "Markdown";
-        
+
         articleEl.appendChild(headerEl);
 
         articleEl.innerHTML += `<p>${data.content.replace(/\n/g, "<br>")}</p>`;

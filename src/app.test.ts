@@ -39,10 +39,11 @@ describe("DOM Testing with JSDOM", () => {
       </body>
       </html>
     `;
+
     const dom = new JSDOM(htmlContent);
     const document = dom.window.document;
     const blogslist = document.getElementById("blogslist");
-    
+
     expect(blogslist).not.toBeNull();
     expect(blogslist?.children.length).toBe(4);
     expect(blogslist?.children[0].textContent).toBe("failOnlyOneTest.md");
